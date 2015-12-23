@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MaterialStudy</string>
+    <string name="sesame_open">芝麻开门</string>
+    <string name="sesame_close">芝麻关门</string>
+</resources>
