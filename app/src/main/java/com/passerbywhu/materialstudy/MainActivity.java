@@ -1,5 +1,7 @@
 package com.passerbywhu.materialstudy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,9 +11,23 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.passerbywhu.materialstudy.behavior.fab.FABActivity;
+import com.passerbywhu.materialstudy.behavior.follow.FollowActivity;
+import com.passerbywhu.materialstudy.behavior.follow.FollowBehavior;
+import com.passerbywhu.materialstudy.behavior.footer.FooterActivity;
+import com.passerbywhu.materialstudy.behavior.scrollToTop.ScrollToTopActivity;
+import com.passerbywhu.materialstudy.recyclerview.DragSortRecyclerView;
+import com.passerbywhu.materialstudy.recyclerview.DragSortRecyclerViewAdapter;
+import com.passerbywhu.materialstudy.recyclerview.HeaderFooterRecyclerViewAdapter;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mFabBtn;
@@ -21,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private TabLayout mTabLayout;
     private NavigationView mNavigationView;
+    private DragSortRecyclerView mRecyclerView;
+    private ActivityAdapter mAdapter;
+    private Class[] activityClasses = new Class[]{
+            FABActivity.class, FollowActivity.class, FooterActivity.class, ScrollToTopActivity.class,
+            FABActivity.class, FollowActivity.class, FooterActivity.class, ScrollToTopActivity.class,
+            FABActivity.class, FollowActivity.class, FooterActivity.class, ScrollToTopActivity.class,
+            FABActivity.class, FollowActivity.class, FooterActivity.class, ScrollToTopActivity.class
+    };
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -90,5 +114,18 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
+
+        mRecyclerView = (DragSortRecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new ActivityAdapter(this);
+        mAdapter.setData(Arrays.asList(activityClasses));
+        mAdapter.setOnItemClickListener(new HeaderFooterRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, View itemView) {
+                Intent intent = new Intent(MainActivity.this, mAdapter.getItem(position));
+                startActivity(intent);
+            }
+        });
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

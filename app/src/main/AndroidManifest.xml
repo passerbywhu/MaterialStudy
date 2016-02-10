@@ -9,6 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/ActionBarTheme.WithoutActionBar">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".behavior.fab.FABActivity">
         </activity>
@@ -19,10 +23,6 @@
         <activity android:name=".behavior.follow.FollowActivity">
         </activity>
         <activity android:name=".behavior.scrollToTop.ScrollToTopActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
