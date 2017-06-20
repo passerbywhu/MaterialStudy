@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.passerbywhu.materialstudy.nestedscroll.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/header"
+        android:scaleType="centerCrop"
+        />
+
+    <com.passerbywhu.materialstudy.nestedscroll.NestedTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="我爱北京天安门"
+        android:gravity="center"
+        />
+</com.passerbywhu.materialstudy.nestedscroll.ZoomLayout>
