@@ -70,10 +70,10 @@ public class ZoomLayout extends LinearLayoutCompat implements NestedScrollingPar
         int consumedY = 0;
         if (dy < 0) { //向下滑动
             consumedY = Math.abs(dy) - (originalImageHeight - height) <= 0 ? Math.abs(dy) : (originalImageHeight - height);
-            params.height = params.height + consumedY;
+            params.height = height + consumedY;
         } else {
             consumedY = Math.abs(dy) - height <= 0 ? Math.abs(dy) : height;
-            params.height = params.height - consumedY;
+            params.height = height - consumedY;
         }
         view.setLayoutParams(params);
         //这里如果不主动设置target的top，而只设置ImageView的params的height的话，NestedSrcollingChildHelper算出来的offsetInWindow的值一直是0

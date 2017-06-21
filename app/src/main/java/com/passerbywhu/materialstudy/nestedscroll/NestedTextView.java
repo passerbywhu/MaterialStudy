@@ -25,6 +25,7 @@ public class NestedTextView extends AppCompatTextView implements NestedScrolling
     private int[] consumed = new int[2];
     private int[] offsetWindow = new int[2];
     private Scroller mScroller;
+    private int scrollY = Integer.MIN_VALUE;
 
     public NestedTextView(Context context) {
         this(context, null);
@@ -95,6 +96,15 @@ public class NestedTextView extends AppCompatTextView implements NestedScrolling
             }
         };
         mGestureDetector = new GestureDetector(getContext(), mOnGestureListener);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        scrollY = getScrollY();
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (scrollY != Integer.MIN_VALUE) {
+            setScrollY(scrollY);
+        }
     }
 
     @Override
